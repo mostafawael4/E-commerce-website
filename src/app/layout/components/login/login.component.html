@@ -1,0 +1,42 @@
+
+<div class="w-1/2 mx-auto py-10">
+    <div class="headers bg-main w-fit mx-auto py-1 px-4 rounded-md text-white">
+        <h2 class="text-2xl text-center ">Login Form</h2>
+    </div>
+    
+    @if (flag) {
+        <div class="bg-red-950 text-white py-5 my-5 flex justify-between px-4 items-center rounded-md">
+            <p>Incorrect Email or Password.</p>
+            <i class="fa-solid fa-close text-xl cursor-pointer" (click)="flag=false"></i>
+        </div>
+    }
+
+    <form [formGroup]="loginForm" (ngSubmit)="submit()">
+        <div class="flex flex-col mt-3">
+            <label for="email">Email:</label>
+            <input formControlName ="email" type="email" id="email" class="py-2 px-3 rounded-md border border-black">
+            @if (loginForm.get('email')?.touched) {
+            <div class="bg-red-950 text-white my-1 rounded-md">
+                @if (loginForm.get('email')?.errors?.['required']) {
+                    <p class="py-2 px-1 ">This field is required</p>
+                }
+                @else if(loginForm.get('email')?.errors?.['email']){
+                    <p class="py-2 px-1 ">Enter valid mail</p>
+                }
+            </div>
+            }
+        </div>
+        <div class="flex flex-col mt-3">
+            <label for="password">password:</label>
+            <input formControlName = "password" type="password" id="password" class="py-2 px-3 rounded-md border border-black">
+            @if (loginForm.get('password')?.touched) {
+            <div class="bg-red-950 text-white my-1 rounded-md">
+                @if (loginForm.get('password')?.errors?.['required']) {
+                    <p class="py-2 px-1 ">This field is required</p>
+                }
+            </div>
+            }
+        </div>
+        <button [disabled] = "loginForm.invalid" class="text-white bg-main py-2 px-4 rounded-md mt-3 block ms-auto" >Login</button>
+    </form>
+</div>

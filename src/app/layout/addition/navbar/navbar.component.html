@@ -1,0 +1,39 @@
+<nav class="shadow-xl py-6 ">
+    <div class="md:px-20  flex justify-between items-center">
+        <div class="flex justify-center items-center gap-4">
+            <div class="text-black text-xl font-bold">
+                <img src="../../../../assets/images/freshcart-logo.svg" alt="">
+            </div>
+            <div class="hidden md:flex space-x-4">
+                <a  class="text-black py-1 px-3 duration-500 rounded-md" routerLink="home" routerLinkActive="bg-main text-white ">Home</a>
+                <a  class="text-black py-1 px-3 duration-500 rounded-md" routerLink="products" routerLinkActive="bg-main text-white ">Products</a>
+                <a  class="text-black py-1 px-3 duration-500 rounded-md" routerLink="categories" routerLinkActive="bg-main text-white ">Categories</a>
+                <a  class="text-black py-1 px-3 duration-500 rounded-md" routerLink="cart" routerLinkActive="bg-main text-white ">Cart</a>
+            </div>
+        </div>
+
+        <div class="socialMedia md:flex space-x-4 items-center">
+            <a href=""><i class="fa-brands fa-facebook"></i></a>
+            <a href=""><i class="fa-brands fa-github"></i></a>
+            <a href=""><i class="fa-brands fa-linkedin-in"></i></a>
+            <a href=""><i class="fa-brands fa-instagram"></i></a>
+            <a href=""><i class="fa-brands fa-youtube"></i></a>
+            <a  class="text-black py-1 px-3 duration-500 rounded-md" routerLink="login" routerLinkActive="bg-main text-white ">Login</a>
+            <a  class="text-black py-1 px-3 duration-500 rounded-md" routerLink="register" routerLinkActive="bg-main text-white ">Register</a>
+            <a  class="text-black py-1 px-3">Log out</a>
+            
+        </div>
+        <button id="menu-button" class="text-black md:hidden" (click)="toggleMenu()">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+            </svg>
+        </button>
+    </div>
+    <div id="mobile-menu" class="hidden md:hidden" [ngClass]="{'hidden': !isMenuOpen}" >
+        <a  class="block text-black p-2 duration-500 rounded-md" routerLink="home" routerLinkActive="bg-main text-white ">Home</a>
+        <a  class="block text-black p-2 duration-500 rounded-md" routerLink="products" routerLinkActive="bg-main text-white ">Products</a>
+        <a  class="block text-black p-2 duration-500 rounded-md" routerLink="categories" routerLinkActive="bg-main text-white ">Categories</a>
+        <a  class="block text-black p-2 duration-500 rounded-md" routerLink="cart" routerLinkActive="bg-main text-white ">Cart</a>
+    </div>
+</nav>
