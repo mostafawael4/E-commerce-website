@@ -1,39 +1,79 @@
-<nav class="shadow-xl py-6 ">
-    <div class="md:px-20  flex justify-between items-center">
-        <div class="flex justify-center items-center gap-4">
-            <div class="text-black text-xl font-bold">
-                <img src="../../../../assets/images/freshcart-logo.svg" alt="">
-            </div>
-            <div class="hidden md:flex space-x-4">
-                <a  class="text-black py-1 px-3 duration-500 rounded-md" routerLink="home" routerLinkActive="bg-main text-white ">Home</a>
-                <a  class="text-black py-1 px-3 duration-500 rounded-md" routerLink="products" routerLinkActive="bg-main text-white ">Products</a>
-                <a  class="text-black py-1 px-3 duration-500 rounded-md" routerLink="categories" routerLinkActive="bg-main text-white ">Categories</a>
-                <a  class="text-black py-1 px-3 duration-500 rounded-md" routerLink="cart" routerLinkActive="bg-main text-white ">Cart</a>
-            </div>
-        </div>
-
-        <div class="socialMedia md:flex space-x-4 items-center">
-            <a href=""><i class="fa-brands fa-facebook"></i></a>
-            <a href=""><i class="fa-brands fa-github"></i></a>
-            <a href=""><i class="fa-brands fa-linkedin-in"></i></a>
-            <a href=""><i class="fa-brands fa-instagram"></i></a>
-            <a href=""><i class="fa-brands fa-youtube"></i></a>
-            <a  class="text-black py-1 px-3 duration-500 rounded-md" routerLink="login" routerLinkActive="bg-main text-white ">Login</a>
-            <a  class="text-black py-1 px-3 duration-500 rounded-md" routerLink="register" routerLinkActive="bg-main text-white ">Register</a>
-            <a  class="text-black py-1 px-3">Log out</a>
-            
-        </div>
-        <button id="menu-button" class="text-black md:hidden" (click)="toggleMenu()">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
-                stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+<nav class="bg-white fixed z-50 w-full shadow-md">
+    <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+        <a  class="flex items-center space-x-3 rtl:space-x-reverse">
+            <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
+                <img src="assets/images/freshcart-logo.svg">
+            </span>
+        </a>
+        <button data-collapse-toggle="navbar-default" type="button"
+            class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+            aria-controls="navbar-default" aria-expanded="false">
+            <span class="sr-only">Open main menu</span>
+            <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M1 1h15M1 7h15M1 13h15" />
             </svg>
         </button>
-    </div>
-    <div id="mobile-menu" class="hidden md:hidden" [ngClass]="{'hidden': !isMenuOpen}" >
-        <a  class="block text-black p-2 duration-500 rounded-md" routerLink="home" routerLinkActive="bg-main text-white ">Home</a>
-        <a  class="block text-black p-2 duration-500 rounded-md" routerLink="products" routerLinkActive="bg-main text-white ">Products</a>
-        <a  class="block text-black p-2 duration-500 rounded-md" routerLink="categories" routerLinkActive="bg-main text-white ">Categories</a>
-        <a  class="block text-black p-2 duration-500 rounded-md" routerLink="cart" routerLinkActive="bg-main text-white ">Cart</a>
+        <div class="hidden w-full md:block md:w-auto" id="navbar-default">
+            <ul
+                class="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg  md:flex-row md:space-x-3 rtl:space-x-reverse md:mt-0 md:border-0  dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+                @if (isLogin) {
+                    <li>
+                        <a routerLink="home" routerLinkActive="bg-main text-white"
+                            class="block py-2 px-3 text-gray-900 rounded-md ">Home</a>
+                    </li>
+                    <li>
+                        <a routerLink="products" routerLinkActive="bg-main text-white"
+                            class="block py-2 px-3 text-gray-900 rounded-md ">Products</a>
+                    </li>
+                    <li>
+                        <a routerLink="categories" routerLinkActive="bg-main text-white"
+                            class="block py-2 px-3 text-gray-900 rounded-md ">Categories</a>
+                    </li>
+                    <li>
+                        <a routerLink="cart" routerLinkActive="bg-main text-white"
+                            class="block py-2 px-3 text-gray-900 rounded-md ">Cart</a>
+                    </li>
+                }
+            </ul>
+        </div>
+
+        <div class="hidden w-full md:block md:w-auto" id="navbar-default">
+            <ul
+                class="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg  md:flex-row md:space-x-3 rtl:space-x-reverse md:mt-0 md:border-0  dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+                <div class="flex items-center space-x-4">
+                    <li>
+                        <a href=""><i class="fa-brands fa-facebook "></i></a>
+                    </li>
+                    <li>
+                        <a href=""><i class="fa-brands fa-youtube"></i></a>
+                    </li>
+                    <li>
+                        <a href=""><i class="fa-brands fa-instagram"></i></a>
+                    </li>
+                    <li>
+                        <a href=""><i class="fa-brands fa-linkedin"></i></a>
+                    </li>
+                </div>
+               
+
+                @if (!isLogin) {
+                    <li>
+                        <a routerLink="login" routerLinkActive="bg-main text-white"
+                            class="block py-2 px-3 text-gray-900 rounded-md ">Login</a>
+                    </li>
+                    <li>
+                        <a routerLink="register" routerLinkActive="bg-main text-white"
+                            class="block py-2 px-3 text-gray-900 rounded-md ">Register</a>
+                    </li>
+                }
+                @else {
+                    <li>
+                        <a (click)="_SignUpService.logOut()" class="block py-2 px-3 text-gray-900 rounded-md  cursor-pointer">Logout</a>
+                    </li>
+                }
+                
+            </ul>
+        </div>
     </div>
 </nav>

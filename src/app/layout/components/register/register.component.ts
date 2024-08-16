@@ -1,6 +1,9 @@
-import { SignUpService } from './../../../services/sign-up.service';
+
 import { Component } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { AbstractControl, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { SignUpService } from '../../../services/authentication/sign-up.service';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-register',
@@ -35,29 +38,34 @@ export class RegisterComponent {
     this.passwordMatch
   );
 
-  passwordMatch(g: any): { [key: string]: boolean } | null {
+  passwordMatch(g: AbstractControl): { [key: string]: boolean } | null {
     if (g.get('password')?.value == g.get('rePassword')?.value) {
       return null;
     } else {
       return { mismatch: true };
     }
   }
-  constructor(private _SignUpService: SignUpService) {}
-
-  message!:string;
-  flag!:boolean;
+  constructor(private _SignUpService: SignUpService, private _Router: Router) {}
+  message!: string;
+  flag!: boolean;
+  isLoading:boolean = false;
   submitForm() {
+    this.isLoading = true;
     this._SignUpService.register(this.registerForm.value).subscribe({
-      next : ()=>{
+      next: (res) => {
         this.message = 'account have been created successfully';
-        console.log('Registration successful');
-        this.flag=false;
+        console.log(res);
+        this.flag = false;
+        this.isLoading = false;
+        this._Router.navigate(['/login']);
+        
       },
-      error : ()=>{
-        this.message =  'user name or Email are exist already';
-        console.log('Registration failed');
+      error: (res) => {
+        this.message = 'user name or Email are exist already';
+        this.isLoading = false;
+        console.log(res);
         this.flag = true;
-      }  
-      })
+      },
+    });
   }
 }

@@ -1,1 +1,55 @@
-<p>productdetails works!</p>
+<div [class]="loadingPage?'flex':'hidden'"
+    class="loading bg-black justify-center items-center  inset-0 fixed z-10  ">
+    <i class="fa-solid fa-spinner fa-spin  text-5xl text-white"></i>
+</div>
+
+
+<div class="md:px-20 px-0 pt-28 pb-10 flex space-x-2">
+    <div class="w-20">
+        @for (item of productImages; track $index) {
+            <div class="w-14">
+                <img (click)="changeImage(item)" [src]="item" alt="itemImage" class="w-full rounded-md py-1 cursor-pointer hover:scale-110 duration-500 ">
+            </div>
+        }
+    </div>
+
+    <div class="grid grid-cols-5 md:gap-32 ">
+        <div class="md:col-span-2 col-span-5">
+            <div class="border-2 border-black">
+                <img [src]="image" alt="" class="w-full">
+            </div>
+        </div>
+        <div class="md:col-span-3 col-span-5">
+            <div class="text-2xl">
+                <span class=" py-1">
+                    <h2 class=" font-bold ">Title : </h2>
+                    <h2 class="">{{title}}</h2>
+                </span>
+                <span class="py-1">
+                    <h2 class=" font-bold ">description : </h2>
+                    <h2 class="">{{description}}</h2>
+                </span>
+                <span class="flex gap-1 py-1">
+                    <h2 class=" font-bold">category : </h2>
+                    <h2 class="">{{category}}</h2>
+                </span>
+                <span class="flex gap-1 py-1">
+                    <h2 class=" font-bold">brand : </h2>
+                    <h2 class="">{{brand}}</h2>
+                </span>
+                <span class="flex gap-1">
+                    <h2 class=" font-bold">rating : </h2>
+                    <h2 class=""><i class="fa-solid fa-star text-yellow-300"></i>({{rating}})</h2>
+                </span>
+                <span class="flex gap-1">
+                    <h2 class=" font-bold">price : </h2>
+                    <h2 class="">{{price + 'LE'}}</h2>
+                </span>
+
+                <div class="py-2">
+                    <button class="bg-main w-full py-2 rounded-md">+Add to cart</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { SigninService } from '../../../services/signin.service';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { SignUpService } from '../../../services/authentication/sign-up.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -11,24 +12,30 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 })
 export class LoginComponent {
   loginForm: FormGroup = new FormGroup({
-    email: new FormControl(null, [Validators.required , Validators.email]),
+    email: new FormControl(null, [Validators.required, Validators.email]),
     password: new FormControl(null, Validators.required),
   });
 
-  constructor(private _SigninService: SigninService) {}
-  flag!:boolean
+  constructor(private _SigninService: SignUpService , private _Router:Router) {}
+  flag!: boolean;
+  isLoading: boolean = false;
 
   submit() {
+    this.isLoading = true;
     this._SigninService.login(this.loginForm.value).subscribe({
-      next : ()=>{
-        console.log("correct user")
-        console.log(this._SigninService.login(this.loginForm.value));
+      next: (res) => {
+        this.isLoading = false
+        console.log(res);
         this.flag = false;
+        localStorage.setItem("userToken" , res.token)
+        this._SigninService.decode()
+        this._Router.navigate(['/home'])
       },
-      error :()=>{
-        console.log("user doesn't exist");
-        this.flag=true
-      }
-    })
+      error: (res) => {
+        this.isLoading = false;
+        console.log(res);
+        this.flag = true;
+      },
+    });
   }
 }

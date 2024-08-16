@@ -1,4 +1,4 @@
-<div class="w-1/2 mx-auto py-5">
+<div class="md:w-1/2 mx-auto py-5 w-3/4 pt-32">
     <div class="headers bg-main w-fit mx-auto py-1 px-4 rounded-md text-white">
         <h2 class="text-2xl text-center ">Register Form</h2>
     </div>
@@ -86,7 +86,16 @@
             </div>
             }
         </div>
-        <button [disabled] = "registerForm.invalid" class="bg-main py-2 px-4 rounded-md mt-3 block ms-auto text-white" >Submit Form</button>
+        <button [disabled] = "registerForm.invalid" class="bg-main py-2 px-4 rounded-md mt-3 block ms-auto text-white" >
+            @if (isLoading) {
+                <span>
+                    <i class="fa-solid fa-spinner fa-spin"></i>
+                </span>
+            }
+            @else {
+                <span>submit Form</span>
+            }
+        </button>
 
 
        
