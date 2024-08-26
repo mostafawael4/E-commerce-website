@@ -17,7 +17,7 @@ export class ProductService {
 
   getProductList(page: number): Observable<dataObject> {
     return this._HttpClient.get<dataObject>(
-      `${shared.baseUrl}/api/v1/products?page=${page}`
+      `${shared.baseUrl}/api/v1/products?page=${page}`  
     );
   }
   getProductDetails(id:string | null) :Observable<details>{

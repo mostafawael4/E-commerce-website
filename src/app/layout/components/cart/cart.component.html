@@ -1,1 +1,57 @@
-<p>cart works!</p>
+<div [class]="loadingPage?'flex':'hidden'" class="loading bg-white justify-center items-center  inset-0 fixed z-10  ">
+    <i class="fa-solid fa-spinner fa-spin  text-4xl text-black"></i>
+</div>
+
+
+
+@if (data) {
+    @if (count>0) {
+        <section [class]="loadingPage?'hidden':'block'" class="mb-10">
+            <h2 class="text-3xl bg-main text-white py-3 px-5 w-fit mx-auto rounded-md ">Shop Cart</h2>
+            <span class="text-2xl bg-main w-fit py-3 px-5 text-white rounded-md my-5 block  mx-auto ">Total Price : <span
+                    class="text-green-400 font-semibold ">{{data.totalCartPrice}}EGP</span>
+            </span>
+            @for (product of productsList; track $index) {
+            <div class="grid grid-cols-12 border-b-2 border-black py-4 items-center gap-4">
+                <div class="lg:col-span-1 md:col-span-3 col-span-12">
+                    <img [src]="product.product.imageCover" alt="" class="rounded-md">
+                </div>
+                <div class="lg:col-span-10 md:col-span-6 col-span-12">
+                    <div>
+                        <h2 class="text-2xl">{{product.product.title}}</h2>
+                        <span class="text-2xl py-4">price : <span
+                                class="text-green-700 font-semibold ">{{product.price}}EGP</span></span>
+                        <div (click)="deleteItem(product.product._id)"
+                            class="text-2xl flex items-center space-x-2 cursor-pointer">
+                            <span><i class="fa-solid fa-trash-can text-green-700"></i></span>
+                            <span>Remove</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="lg:col-span-1 md:col-span-3 col-span-12">
+                    <div class="flex items-center">
+                        <span (click)="updateQuantity(product.count=product.count+1 , product.product._id)"
+                            class="hover:text-green-700 duration-500 cursor-pointer"><i
+                                class="fa-solid fa-circle-plus text-3xl"></i></span>
+                        <span class="text-2xl px-4">{{product.count}}</span>
+                        <span (click)="updateQuantity(product.count=product.count-1 , product.product._id)"
+                            class="hover:text-green-700 duration-500 cursor-pointer"><i
+                                class="fa-solid fa-circle-minus text-3xl"></i></span>
+                    </div>
+                </div>
+            </div>
+            }
+            <button [routerLink]="['/shipping' , cartId]"
+                class="bg-main my-6 text-white rounded-md py-4 px-8 block ms-auto hover:bg-green-700 duration-500">Create
+                Order</button>
+        </section>
+    }
+    @else {
+        <div class="warning flex justify-center items-center "><span
+                class="bg-main text-white text-3xl rounded-md py-4 px-8">your cart is empty</span></div>
+    }
+
+}
+@else {
+<div class="warning flex justify-center items-center "><span class="bg-main text-white text-3xl rounded-md py-4 px-8">{{message}}</span></div>
+}

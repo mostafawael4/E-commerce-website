@@ -1,0 +1,23 @@
+<div [class]="loadingPage?'flex':'hidden'" class="loading bg-white justify-center items-center  inset-0 fixed z-10  ">
+    <i class="fa-solid fa-spinner fa-spin  text-4xl text-black"></i>
+</div>
+
+<div [class]="loadingPage?'hidden':'block'" class="text-center">
+    <div class="grid grid-cols-6 gap-4 ">
+        @for (product of brandList; track $index) {
+        <div class="item p-3 rounded-md px-2 py-1 shadow-md my-2 md:col-span-1 col-span-3 cursor-pointer hover:scale-110 duration-500">
+            <div class="">
+                <img [src]="product.image" alt="brandImage" class="w-full">
+                <span class="text-xl font-semibold">{{product.name}}</span>
+            </div>
+        </div>
+        }
+    </div>
+
+    <div class="flex justify-center gap-2 py-2">
+        <button (click)="changePage(1)" [ngClass]="{'bg-main': i===1 , 'text-white':i==1} "
+            class="border-2 border-black   rounded-md 0 p-2">1</button>
+        <button (click)="changePage(2)" [ngClass]="{'bg-main': i===2 , 'text-white':i==2}"
+            class="border-2 border-black rounded-md 0 p-2">2</button>
+    </div>
+</div>

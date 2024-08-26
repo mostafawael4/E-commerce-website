@@ -1,10 +1,10 @@
 <div [class]="loadingPage?'flex':'hidden'"
-    class="loading bg-black justify-center items-center  inset-0 fixed z-10  ">
-    <i class="fa-solid fa-spinner fa-spin  text-5xl text-white"></i>
+    class="loading bg-white justify-center items-center  inset-0 fixed z-10  ">
+    <i class="fa-solid fa-spinner fa-spin  text-4xl text-black"></i>
 </div>
 
 
-<div class="md:px-20 px-0 pt-28 pb-10 flex space-x-2">
+<!-- <div class="md:px-20 px-0  pb-10 flex space-x-2">
     <div class="w-20">
         @for (item of productImages; track $index) {
             <div class="w-14">
@@ -47,9 +47,51 @@
                 </span>
 
                 <div class="py-2">
-                    <button class="bg-main w-full py-2 rounded-md">+Add to cart</button>
+                    <button class="bg-main text-white hover:text-black hover:bg-white duration-500 w-full py-2 rounded-md">+Add to cart</button>
                 </div>
             </div>
         </div>
     </div>
-</div>
+</div> -->
+
+<section>
+    <div class="grid grid-cols-12 md:gap-10">
+        <div class="md:col-span-6 col-span-12 ">
+            <owl-carousel-o [options]="customOptions">
+            
+                <ng-container class="">
+                    @for (product of productImages; track $index) {
+                        <ng-template carouselSlide >
+                            <img [src]="product" class="w-full">
+                        </ng-template>
+                    }
+                </ng-container>
+            
+            </owl-carousel-o>
+        </div>
+
+        <div class="md:col-span-6 col-span-12">
+            <div>
+                <h2 class="text-3xl text-green-700">{{category}}</h2>
+                <h2 class="text-2xl">{{title}}</h2>
+                <div class="flex space-x-2">
+                    <i class="fa-solid fa-star text-yellow-300"></i>
+                    <i class="fa-solid fa-star text-yellow-300"></i>
+                    <i class="fa-solid fa-star text-yellow-300"></i>
+                    <i class="fa-solid fa-star text-yellow-300"></i>
+                    <i class="fa-regular fa-star"></i>
+                </div>
+                <div class="flex flex-col my-5">
+                    <span class="text-2xl ">Price</span>
+                    <span class="text-4xl text-green-700">{{price}}EGP</span>
+                </div>
+
+                <span class="text-2xl decription flex flex-col">Description</span>
+                <p class="text-gray-500">{{description}}</p>
+
+                <button (click)="addToCart(productDetails._id)" class="py-3 px-8 rounded-full bg-main text-white my-8 block mx-auto hover:bg-green-700 duration-500 scale-125">ADD TO CART</button>
+                
+            </div>
+        </div>
+    </div>
+</section>

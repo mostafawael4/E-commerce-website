@@ -1,0 +1,15 @@
+.add{
+    transform: translateY(100%);
+    opacity: 0;
+    transition: all 1s;
+}
+.item:hover{
+    transition: all 0.5s;
+}
+.item:hover .add{
+    transform: translateY(0);
+    opacity: 1;
+}
+.item:hover{
+    scale: 1.10;
+}

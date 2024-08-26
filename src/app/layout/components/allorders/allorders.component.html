@@ -1,0 +1,42 @@
+
+
+
+
+
+<div class="">
+    <h1 class="mb-8 text-center bg-main  text-white w-fit py-4 px-8 text-xl mx-auto rounded-md">
+        All orders
+    </h1>
+
+    <table class="text-center w-full  mb-10  ">
+        <thead class=" flex text-white w-full">
+            <tr class="flex w-full mb-4">
+                <th class="p-2 w-1/4">Product Id</th>
+                <th class="p-2 w-1/4">Product Quantity</th>
+                <th class="p-2 w-1/4">Product Name</th>
+                <th class="p-2 w-1/4">Product Price</th>
+
+            </tr>
+        </thead>
+        @if (loadingPage) {
+            <div class="flex items-center justify-center" style="height: 50vh;"><i class="fa-solid fa-spin fa-spinner text-2xl"></i>
+            </div>
+        }
+        @else {
+            <tbody class="flex flex-col items-center justify-between overflow-scroll w-full" style="height: 50vh;">
+                @for (item of orders; track $index ) {
+                @for (x of item.cartItems; track $index) {
+                <tr class="flex w-full border-2 border-white">
+                    <td class="p-3 w-1/4">{{item.cartItems[$index].product._id}}</td>
+                    <td class="p-3 w-1/4">{{item.cartItems[$index].count}}</td>
+                    <td class="p-3 w-1/4">{{item.cartItems[$index].product.title}}</td>
+                    <td class="p-3 w-1/4">{{item.cartItems[$index].price}}EGP</td>
+                </tr>
+                }
+            
+                }
+            
+            </tbody>
+        }
+    </table>
+</div>

@@ -1,1 +1,16 @@
-<p>categories works!</p>
+<div [class]="loadingPage?'flex':'hidden'" class="loading bg-white justify-center items-center  inset-0 fixed z-10  ">
+    <i class="fa-solid fa-spinner fa-spin  text-4xl text-black"></i>
+</div>
+
+<section [class]="loadingPage?'hidden':'block'" class="mb-10 text-center">
+    <div class="grid  grid-cols-6 gap-4">
+        @for (category of categoryList; track $index) {
+            <div class="md:col-span-1 col-span-3 border-2 shadow-lg p-4 cursor-pointer hover:scale-110 duration-500">
+                <div>
+                    <img [src]="category.image" alt="" class="w-full image">
+                    <span class="text-xl text-green-700 ">{{category.name}}</span>
+                </div>
+            </div>
+        }
+    </div>
+</section>

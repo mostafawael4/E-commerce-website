@@ -1,0 +1,28 @@
+
+
+
+@if(loadingPage){
+    <div  class="loading flex justify-center items-center h-40 ">
+        <i class="fa-solid fa-spinner fa-spin  text-3xl text-black"></i>
+    </div>
+}
+
+
+
+
+@else {
+    <h3 class="text-xl py-1 ">Shop popular categories</h3>
+    <owl-carousel-o [options]="customOptions">
+        <ng-container>
+            @for (item of categoryList; track $index) {
+            <ng-template carouselSlide>
+                <img [src]="item.image" [alt]="item.name" class="w-full">
+                <h3 class="text-xl">{{item.name}}</h3>
+            </ng-template>
+            }
+    
+        </ng-container>
+    
+    </owl-carousel-o> 
+}
+

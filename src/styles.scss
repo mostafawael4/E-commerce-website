@@ -3,8 +3,12 @@
 @tailwind components;
 @tailwind utilities;
 
-
-.bg-main{
-    background-color: #0aad0a;
+.bg-main {
+  background-color: #333333;
 }
 
+
+body {
+  background-color: #e0e5e9;
+  font-family: poppins-semibold (ttf);
+}
