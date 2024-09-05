@@ -44,10 +44,15 @@ export class HomeComponent implements OnInit {
     this.loadingPage = true;
     this._ProductService.getProductList(1).subscribe({
       next: (res) => {
-        this.loadingPage = false;
+        
         this.productList = res.data;
-        res.data.forEach(item =>{
-          // this.heartStatus[item._id] = true;
+        this._WhishlistService.getLoggedUserWishList().subscribe({
+          next : res=>{
+            this.loadingPage = false;
+            res.data.forEach(item =>{
+              this.heartStatus[item._id] = true;
+            })
+          }
         })
         console.log(res);
       },

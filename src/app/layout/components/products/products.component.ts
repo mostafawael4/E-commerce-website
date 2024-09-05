@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 import { CartComponent } from '../cart/cart.component';
 import { CartService } from '../../../services/cart/cart.service';
 import { ToastrService } from 'ngx-toastr';
+import { WhishlistService } from '../../../services/wishlist/whishlist.service';
 
 @Component({
   selector: 'app-products',
@@ -22,13 +23,15 @@ export class ProductsComponent implements OnInit {
     private _ProductService: ProductService,
     private _Router: Router,
     private _CartService: CartService,
-    private _ToastrService: ToastrService
+    private _ToastrService: ToastrService,
+    private _WhishlistService: WhishlistService
   ) {}
 
   productList!: product[];
   images!: string;
   i: number = 1;
   loadingPage!: boolean;
+  heartStatus: { [key: string]: boolean } = {};
 
   changePage(x: number) {
     this.i = x;
@@ -40,7 +43,15 @@ export class ProductsComponent implements OnInit {
     this._ProductService.getProductList(this.i).subscribe({
       next: (res) => {
         this.productList = res.data;
-        this.loadingPage = false;
+        
+        this._WhishlistService.getLoggedUserWishList().subscribe({
+          next: (res) => {
+            this.loadingPage = false;
+            res.data.forEach((item) => {
+              this.heartStatus[item._id] = true;
+            });
+          },
+        });
       },
       error: () => {
         console.log('error');
@@ -63,7 +74,7 @@ export class ProductsComponent implements OnInit {
     this._CartService.addProductToCart(ID).subscribe({
       next: (res) => {
         this._ToastrService.success(res.message);
-        this._CartService.count.next(res.numOfCartItems)
+        this._CartService.count.next(res.numOfCartItems);
         console.log(res);
       },
       error: (err) => {
@@ -71,5 +82,38 @@ export class ProductsComponent implements OnInit {
         console.log(err);
       },
     });
+  }
+
+  toggleHeart(productId: string): void {
+    if (this.heartStatus[productId]) {
+      this.heartStatus[productId] = false;
+      this._WhishlistService.RemoveProductFromWhishList(productId).subscribe({
+        next: (res) => {
+          this._WhishlistService.count.next(res.data.length);
+          this._ToastrService.success(res.message);
+        },
+        error: (err) => {
+          this._ToastrService.success(err.message);
+          console.log(err);
+        },
+      });
+    } else {
+      this.heartStatus[productId] = true;
+      this._WhishlistService.addItem(productId).subscribe({
+        next: (res) => {
+          this._WhishlistService.count.next(res.data.length);
+          this._ToastrService.success(res.message);
+          console.log(res);
+        },
+        error: (err) => {
+          this._ToastrService.success(err.message);
+          console.log(err);
+        },
+      });
+    }
+  }
+
+  isHeartRed(productId: string): boolean {
+    return this.heartStatus[productId];
   }
 }

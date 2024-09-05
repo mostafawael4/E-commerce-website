@@ -71,7 +71,12 @@ export class SignUpService {
   }
 
   decode() {
-    
+    // if(typeof localStorage !="undefined")
+    // {
+    //      const token = JSON.stringify(localStorage.getItem('userToken'));
+    //      const decode = jwtDecode(token);
+    //      this.userDetails.next(decode);
+    // }
     const token = JSON.stringify(localStorage.getItem('userToken'));
     const decode = jwtDecode(token);
     this.userDetails.next(decode);

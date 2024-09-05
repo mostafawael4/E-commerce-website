@@ -15,80 +15,188 @@ import { AllordersComponent } from './layout/components/allorders/allorders.comp
 import { title } from 'process';
 import { BrandsComponent } from './layout/components/brands/brands.component';
 import { WishlistComponent } from './layout/addition/wishlist/wishlist.component';
+import { AuthenticationpagesComponent } from './authenticationpages/authenticationpages.component';
+import { PagesComponent } from './pages/pages.component';
 
 export const routes: Routes = [
-  { path: '', redirectTo: 'home', pathMatch: 'full' },
   {
-    path: 'home',
-    component: HomeComponent,
-    canActivate: [loginguardGuard],
-    title: 'home',
-  },
-  {
-    path: 'products',
-    component: ProductsComponent,
-    canActivate: [loginguardGuard],
-    title: 'products',
-  },
-  {
-    path: 'wishlist',
-    component: WishlistComponent,
-    canActivate: [loginguardGuard],
-    title: 'wishlist',
-  },
-  {
-    path: 'allorders',
-    component: AllordersComponent,
-    canActivate: [loginguardGuard],
-    title: 'allOrders',
-  },
-  {
-    path: 'productdetails/:id',
-    component: ProductdetailsComponent,
-    canActivate: [loginguardGuard],
-    title: 'productDetails',
-  },
-  {
-    path: 'shipping/:cartId',
-    component: ShippingComponent,
-    canActivate: [loginguardGuard],
-    title: 'shipping',
-  },
-  {
-    path: 'categories',
-    component: CategoriesComponent,
-    canActivate: [loginguardGuard],
-    title: 'categories',
-  },
-  {
-    path: 'brand',
-    component: BrandsComponent,
-    canActivate: [loginguardGuard],
-    title: 'brands',
-  },
-  {
-    path: 'cart',
-    component: CartComponent,
-    canActivate: [loginguardGuard],
-    title: 'cart',
-  },
-  {
-    path: 'login',
-    component: LoginComponent,
+    path: '',
+    component: AuthenticationpagesComponent,
     canActivate: [homeguardGuard],
-    title: 'login',
+    children: [
+      { path: '', redirectTo: 'login', pathMatch: 'full' },
+      {
+        path: 'login',
+        component: LoginComponent,
+        title: 'login',
+      },
+      {
+        path: 'forgetpassword',
+        component: ForgetpasswordComponent,
+        title: 'forgetPassword',
+      },
+      {
+        path: 'register',
+        component: RegisterComponent,
+        title: 'register',
+      },
+    ],
   },
   {
-    path: 'forgetpassword',
-    component: ForgetpasswordComponent,
-    canActivate: [homeguardGuard],
-    title: 'forgetPassword',
-  },
-  {
-    path: 'register',
-    component: RegisterComponent,
-    canActivate: [homeguardGuard],
-    title: 'register',
+    path: '',
+    component: PagesComponent,
+    canActivate: [loginguardGuard],
+    children: [
+      { path: '', redirectTo: 'home', pathMatch: 'full' },
+      {
+        path: 'home',
+        component: HomeComponent,
+        title: 'home',
+      },
+      {
+        path: 'products',
+        component: ProductsComponent,
+        title: 'products',
+      },
+      {
+        path: 'wishlist',
+        component: WishlistComponent,
+        title: 'wishlist',
+      },
+      {
+        path: 'allorders',
+        component: AllordersComponent,
+        title: 'allOrders',
+      },
+      {
+        path: 'productdetails/:id',
+        component: ProductdetailsComponent,
+        title: 'productDetails',
+      },
+      {
+        path: 'shipping/:cartId',
+        component: ShippingComponent,
+        title: 'shipping',
+      },
+      {
+        path: 'categories',
+        component: CategoriesComponent,
+        title: 'categories',
+      },
+      {
+        path: 'brand',
+        component: BrandsComponent,
+        title: 'brands',
+      },
+      {
+        path: 'cart',
+        component: CartComponent,
+        title: 'cart',
+      },
+    ],
   },
   { path: '**', component: NotfoundComponent },
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  // { path: '', redirectTo: 'home', pathMatch: 'full' },
+  // {
+  //   path: 'home',
+  //   component: HomeComponent,
+  //   canActivate: [loginguardGuard],
+  //   title: 'home',
+  // },
+  // {
+  //   path: 'products',
+  //   component: ProductsComponent,
+  //   canActivate: [loginguardGuard],
+  //   title: 'products',
+  // },
+  // {
+  //   path: 'wishlist',
+  //   component: WishlistComponent,
+  //   canActivate: [loginguardGuard],
+  //   title: 'wishlist',
+  // },
+  // {
+  //   path: 'allorders',
+  //   component: AllordersComponent,
+  //   canActivate: [loginguardGuard],
+  //   title: 'allOrders',
+  // },
+  // {
+  //   path: 'productdetails/:id',
+  //   component: ProductdetailsComponent,
+  //   canActivate: [loginguardGuard],
+  //   title: 'productDetails',
+  // },
+  // {
+  //   path: 'shipping/:cartId',
+  //   component: ShippingComponent,
+  //   canActivate: [loginguardGuard],
+  //   title: 'shipping',
+  // },
+  // {
+  //   path: 'categories',
+  //   component: CategoriesComponent,
+  //   canActivate: [loginguardGuard],
+  //   title: 'categories',
+  // },
+  // {
+  //   path: 'brand',
+  //   component: BrandsComponent,
+  //   canActivate: [loginguardGuard],
+  //   title: 'brands',
+  // },
+  // {
+  //   path: 'cart',
+  //   component: CartComponent,
+  //   canActivate: [loginguardGuard],
+  //   title: 'cart',
+  // },
+  // {
+  //   path: 'login',
+  //   component: LoginComponent,
+  //   canActivate: [homeguardGuard],
+  //   title: 'login',
+  // },
+  // {
+  //   path: 'forgetpassword',
+  //   component: ForgetpasswordComponent,
+  //   canActivate: [homeguardGuard],
+  //   title: 'forgetPassword',
+  // },
+  // {
+  //   path: 'register',
+  //   component: RegisterComponent,
+  //   canActivate: [homeguardGuard],
+  //   title: 'register',
+  // },
+  // { path: '**', component: NotfoundComponent },
 ];

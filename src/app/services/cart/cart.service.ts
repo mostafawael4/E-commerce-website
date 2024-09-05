@@ -1,3 +1,4 @@
+import { SignUpService } from './../authentication/sign-up.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { shared } from '../../shared/fileShared';
@@ -11,16 +12,19 @@ import { cartResponse } from '../../interface/cart/cart';
 export class CartService {
   userToken!: string;
   count = new BehaviorSubject<number>(0);
-  constructor(private _HttpClient: HttpClient) {
+  constructor(
+    private _HttpClient: HttpClient,
+    private _SignUpService: SignUpService
+  ) {
     if (typeof localStorage != 'undefined') {
-      this.userToken = localStorage.getItem('userToken')!;
+      
       this.getLoggedUserCart().subscribe({
         next: (res) => {
           this.count.next(res.numOfCartItems);
         },
       });
+      
     }
-    
   }
 
   addProductToCart(productId: { productId: string }): Observable<cartResponse> {
@@ -29,7 +33,7 @@ export class CartService {
       productId,
       {
         headers: {
-          token: this.userToken,
+          token: localStorage.getItem('userToken')!,
         },
       }
     );
@@ -38,7 +42,7 @@ export class CartService {
   getLoggedUserCart(): Observable<cartResponse> {
     return this._HttpClient.get<cartResponse>(`${shared.baseUrl}/api/v1/cart`, {
       headers: {
-        token: this.userToken,
+        token: localStorage.getItem('userToken')!,
       },
     });
   }
@@ -52,7 +56,7 @@ export class CartService {
       count,
       {
         headers: {
-          token: this.userToken,
+          token: localStorage.getItem('userToken')!,
         },
       }
     );
@@ -63,7 +67,7 @@ export class CartService {
       `${shared.baseUrl}/api/v1/cart/${id}`,
       {
         headers: {
-          token: this.userToken,
+          token: localStorage.getItem('userToken')!,
         },
       }
     );

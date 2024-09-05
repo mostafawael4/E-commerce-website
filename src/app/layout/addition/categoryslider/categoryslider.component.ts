@@ -46,11 +46,9 @@ export class CategorysliderComponent implements OnInit {
       next: (res) => {
         this.loadingPage = false;
         this.categoryList = res.data;
-        console.log(this.categoryList);
       },
       error: (err) => {
         this.loadingPage = false;
-        console.log(err);
       },
     });
   }

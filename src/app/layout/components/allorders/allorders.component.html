@@ -23,7 +23,7 @@
             </div>
         }
         @else {
-            <tbody class="flex flex-col items-center justify-between overflow-scroll w-full" style="height: 50vh;">
+            <tbody class="flex flex-col items-center justify-between overflow-y-scroll w-full" style="height: 50vh;">
                 @for (item of orders; track $index ) {
                 @for (x of item.cartItems; track $index) {
                 <tr class="flex w-full border-2 border-white">

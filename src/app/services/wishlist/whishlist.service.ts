@@ -27,7 +27,7 @@ export class WhishlistService {
       { productId: productId },
       {
         headers: {
-          token: this.userToken,
+          token:  localStorage.getItem('userToken')!,
         },
       }
     );
@@ -38,7 +38,7 @@ export class WhishlistService {
       `${shared.baseUrl}/api/v1/wishlist`,
       {
         headers: {
-          token: this.userToken,
+          token:  localStorage.getItem('userToken')!,
         },
       }
     );
@@ -49,7 +49,7 @@ export class WhishlistService {
       `${shared.baseUrl}/api/v1/wishlist/${id}`,
       {
         headers: {
-          token: this.userToken,
+          token: localStorage.getItem('userToken')!,
         },
       }
     );

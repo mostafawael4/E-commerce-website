@@ -36,7 +36,7 @@
                     </div>
                     <div class="flex flex-col mt-3">
                         
-                        <input formControlName="password" type="password" id="password" placeholder="Password"
+                        <input formControlName="password" [type]="checkedFlag?'text':'password'" id="password" placeholder="Password"
                             class="border-t-0 border-s-0 border-e-0  border border-black">
                         @if (loginForm.get('password')?.touched) {
                         <div class="bg-main text-white my-1 rounded-md">
@@ -46,7 +46,13 @@
                         </div>
                         }
                     </div>
-                    <a routerLink="/forgetpassword" class=" hover:text-green-700 duration-500 text-sm">Forget password?</a>
+                    <div class="flex justify-between items-center">
+                        <div class="flex space-x-2 items-center">
+                            <label for="" class="text-sm">Show password</label>
+                            <input type="checkbox" (click)="toggle()" class="cursor-pointer rounded-sm">
+                        </div>
+                        <a routerLink="/forgetpassword" class=" hover:text-green-700 duration-500 text-sm">Forget password?</a>
+                    </div>
                     <button [disabled]="loginForm.invalid" class="text-white bg-main py-2 px-4 rounded-md mt-3 w-full">
                         @if (isLoading) {
                         <span>

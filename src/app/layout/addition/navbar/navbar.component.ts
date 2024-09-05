@@ -43,12 +43,12 @@ export class NavbarComponent implements OnInit {
     this._CartService.count.subscribe({
       next: () => {
         this.count = this._CartService.count.getValue();
-        console.log(this._CartService.count.getValue());
+        
       },
     });
 
     this._WhishlistService.count.subscribe({
-      next : ()=>{
+      next : ()=>{;
         this.wishCount = this._WhishlistService.count.getValue()
       }
     })

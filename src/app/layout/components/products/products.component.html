@@ -6,9 +6,13 @@
     <div class="grid grid-cols-6 gap-4 ">
        @for (product of productList; track $index) {
         <div  class="item p-3 rounded-md px-2 py-1 shadow-md my-2 md:col-span-1 col-span-3 cursor-pointer">
-           <div (click)="openDetails(product._id)">
-            <img [src]="product.imageCover" alt="productImage" class="w-full">
-            <span class="text-xl text-green-700 font-semibold">{{product.category.name}}</span>
+           <div >
+            <img (click)="openDetails(product._id)" [src]="product.imageCover" alt="productImage" class="w-full">
+            <div class="flex justify-between">
+                <span class="text-xl text-green-700 font-semibold">{{product.category.name}}</span>
+                <i [ngClass]="{'text-red-700': isHeartRed(product._id)}" class="fa-solid fa-heart text-xl"
+                    (click)="toggleHeart(product._id)"></i>
+            </div>
             <h3 class="text-lg">{{product.title.split(' ').slice(0,2).join(' ')}}</h3>
             <span class="flex justify-between">
                 <p class="text-lg">{{product.price }} EGP</p>
