@@ -1,0 +1,21 @@
+div{
+    position: relative;
+    background-image: url(../../assets/images/sd.jpg);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center center;
+    // background-color: black;
+    z-index: 2;
+    
+}
+div::before{
+    content: "";
+    position: absolute;
+    right: 0;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.626);
+    z-index: -1;
+}

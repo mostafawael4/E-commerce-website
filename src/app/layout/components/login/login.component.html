@@ -2,7 +2,7 @@
 
 
 
-<section class=" flex justify-center mb-20 ">
+<!-- <section class=" flex justify-center mb-20 ">
     <div class="grid grid-cols-12 md:w-1/2 w-full bg-white p-4 gap-4 shadow-lg">
         <div class="lg:col-span-6 col-span-12">
             <img src="../../../../assets/images/registration-form-1.jpg" alt="" class="w-full">
@@ -74,6 +74,78 @@
                 </div>
                 
             </div>
+        </div>
+    </div>
+</section> -->
+
+
+<section class="  mt-10">
+    <div class="md:w-1/2 w-full mx-auto bg-black bg-opacity-50 md:p-20 p-10  shadow-2xl rounded-lg">
+        <div class="mx-auto">
+            <div class="headers text-center text-white">
+                <h2 class="text-3xl text-center ">Login Form</h2>
+            </div>
+            @if (flag) {
+            <div class="bg-red-950 text-white py-5 my-5 flex justify-between px-4 items-center rounded-md">
+                <p>Incorrect Email or Password.</p>
+                <i class="fa-solid fa-close text-xl cursor-pointer" (click)="flag=false"></i>
+            </div>
+            }
+            <form [formGroup]="loginForm" (ngSubmit)="submit()" >
+                <div class="flex flex-col mt-3">
+        
+                    <input formControlName="email" type="email" id="email" placeholder="Email address"
+                        class="border-t-0 border-s-0 border-e-0  border border-black">
+                    @if (loginForm.get('email')?.touched) {
+                    <div class=" my-1 rounded-md">
+                        @if (loginForm.get('email')?.errors?.['required']) {
+                        <p class="py-2 px-1 text-red-600">This field is required</p>
+                        }
+                        @else if(loginForm.get('email')?.errors?.['email']){
+                        <p class="py-2 px-1 text-red-600">Enter valid mail</p>
+                        }
+                    </div>
+                    }
+                </div>
+                <div class="flex flex-col mt-3">
+        
+                    <input formControlName="password" [type]="checkedFlag?'text':'password'" id="password"
+                        placeholder="Password" class="border-t-0 border-s-0 border-e-0  border border-black">
+                    @if (loginForm.get('password')?.touched) {
+                    <div class="  my-1 rounded-md">
+                        @if (loginForm.get('password')?.errors?.['required']) {
+                        <p class="py-2 px-1 text-red-600">This field is required</p>
+                        }
+                    </div>
+                    }
+                </div>
+                <div class="flex justify-between items-center">
+                    <div class="flex space-x-2 items-center">
+                        <label for="" class="text-sm text-white">Show password</label>
+                        <input type="checkbox" (click)="toggle()" class="cursor-pointer rounded-sm">
+                    </div>
+                    <a routerLink="/forgetpassword" class="text-white hover:text-green-700 duration-500 text-sm">Forget password?</a>
+                </div>
+                <button [disabled]="loginForm.invalid" class="text-white bg-main py-2 px-4 rounded-md mt-3 w-full">
+                    @if (isLoading) {
+                    <span>
+                        <i class="fa-solid fa-spinner fa-spin"></i>
+                    </span>
+                    }
+                    @else {
+                    <span>
+                        Login
+                    </span>
+                    }
+                </button>
+        
+            </form>
+        
+            <div class="flex justify-center items-center gap-1  mt-3 text-white">
+                <h3 class="text-xl">Don't have account?</h3>
+                <a routerLink="/register" class="text-lg hover:text-green-700 duration-500 font-semibold">Sign up</a>
+            </div>
+        
         </div>
     </div>
 </section>

@@ -1,116 +1,7 @@
-<!-- <div class="md:w-1/2 mx-auto  w-3/4  shadow-lg">
-    <div class="headers bg-main w-fit mx-auto py-1 px-4 rounded-md text-white">
-        <h2 class="text-2xl text-center ">Register Form</h2>
-    </div>
-    @if (flag) {
-        <div class="bg-main text-white py-5 my-5 flex justify-between px-4 items-center rounded-md">
-            <p>Email or Username already exist</p>
-            <i class="fa-solid fa-close text-xl cursor-pointer" (click)="flag=false"></i>
-        </div>
-    }
-
-    <form [formGroup]="registerForm" (ngSubmit)="submitForm()">
-        <div class="flex flex-col mt-3">
-            <label for="name">name:</label>
-            <input formControlName = "name" type="text" id="name" class="py-2 px-3 rounded-md border border-black">
-            @if (registerForm.get('name')?.touched) {
-                <div class="bg-red-950 text-white my-1 rounded-md">
-                    @if (registerForm.get('name')?.errors?.['required']) {
-                        <p class="py-2 px-1 ">This field is required</p>
-                    }
-                    @else if (registerForm.get('name')?.errors?.['pattern']) {
-                        <p class="py-2 px-1 ">Enter valid name Ex(Ali)</p>
-                    }
-       </div>
-            }
-        </div>
-        <div class="flex flex-col mt-3">
-            <label for="email">email:</label>
-            <input formControlName = "email" type="email" id="email" class="py-2 px-3 rounded-md border border-black">
-            @if (registerForm.get('email')?.touched) {
-            <div class="bg-red-950 text-white my-1 rounded-md">
-                @if (registerForm.get('email')?.errors?.['required']) {
-                <p class="py-2 px-1 ">This field is required</p>
-                }
-                @else if (registerForm.get('email')?.errors?.['pattern']) {
-                <p class="py-2 px-1 ">Enter valid Email</p>
-                }
-            </div>
-            }
-        </div>
-        <div class="flex flex-col mt-3">
-            <label for="tel">phone:</label>
-            <input formControlName ="phone" type="tel" id="tel" class="py-2 px-3 rounded-md border border-black">
-            @if (registerForm.get('phone')?.touched) {
-            <div class="bg-red-950 text-white my-1 rounded-md">
-                @if (registerForm.get('phone')?.errors?.['required']) {
-                <p class="py-2 px-1 ">This field is required</p>
-                }
-                @else if (registerForm.get('phone')?.errors?.['pattern']) {
-                <p class="py-2 px-1 ">Enter valid phone</p>
-                }
-            </div>
-            }
-        </div>
-        <div class="flex flex-col mt-3">
-            <label for="password">password:</label>
-            <input formControlName = "password" type="password" id="password" class="py-2 px-3 rounded-md border border-black">
-            @if (registerForm.get('password')?.touched) {
-            <div class="bg-red-950 text-white my-1 rounded-md">
-                @if (registerForm.get('password')?.errors?.['required']) {
-                <p class="py-2 px-1 ">This field is required</p>
-                }
-                @else if (registerForm.get('password')?.errors?.['pattern']) {
-                <div class="py-2 px-1 ">
-                    <p>At least 8 characters long</p>
-                    <p>Contains at least one lowercase letter</p>
-                    <p>Contains at least one uppercase letter</p>
-                    <p>Contains at least one digit</p>
-                    <p>Contains at least one special character</p>
-                </div>
-                }
-            </div>
-            }
-        </div>
-        <div class="flex flex-col mt-3">
-            <label for="repassword">repassword:</label>
-            <input formControlName = "rePassword" type="password" id="repassword" class="py-2 px-3 rounded-md border border-black">
-            @if (registerForm.get('rePassword')?.touched) {
-            <div class="bg-red-950 text-white my-1 rounded-md">
-                @if (registerForm.get('rePassword')?.errors?.['required']) {
-                <p class="py-2 px-1 ">This field is required</p>
-                }
-                @else if (registerForm.errors?.['mismatch']) {
-                <p class="py-2 px-1 ">password must match rePassword</p>
-                }
-            </div>
-            }
-        </div>
-        <button [disabled] = "registerForm.invalid" class="bg-main py-2 px-4 rounded-md mt-3 w-full text-white" >
-            @if (isLoading) {
-                <span>
-                    <i class="fa-solid fa-spinner fa-spin"></i>
-                </span>
-            }
-            @else {
-                <span>submit Form</span>
-            }
-        </button>
-
-
-       
-
-    </form>
-
-    <div class="flex justify-center items-center gap-1 ">
-        <h3 class="text-xl">Have you account?</h3>
-        <a routerLink="/login" class="text-lg hover:text-green-400 duration-500">Log in</a>
-    </div>
-</div> -->
 
 
 
-<section class=" flex justify-center mb-20 " >
+<!-- <section class=" flex justify-center mb-20 " >
     <div class="grid grid-cols-12 md:w-1/2 w-full bg-white p-4 gap-4 shadow-lg">
         <div class="lg:col-span-6 col-span-12">
             <img src="../../../../assets/images/registration-form-1.jpg" alt="" class="w-full">
@@ -215,6 +106,116 @@
                     <h3 class="text-xl">Have you account?</h3>
                     <a routerLink="/login" class="text-lg hover:text-green-700 duration-500 font-semibold">Log in</a>
                 </div>
+            </div>
+        </div>
+    </div>
+</section> -->
+
+
+
+<section class="  mt-10">
+    <div class="md:w-1/2 w-full mx-auto bg-black bg-opacity-50  md:p-20 p-10 shadow-2xl rounded-lg">
+        <div class="mx-auto">
+            <div class="headers text-center text-white">
+                <h2 class="text-3xl text-center ">Registration Form</h2>
+            </div>
+            @if (flag) {
+            <div class="bg-red-950 text-white py-5 my-5 flex justify-between px-4 items-center rounded-md">
+                <p>Email or Username already exist</p>
+                <i class="fa-solid fa-close text-xl cursor-pointer" (click)="flag=false"></i>
+            </div>
+            }
+            <form [formGroup]="registerForm" (ngSubmit)="submitForm()">
+                <div class="flex flex-col mt-3">
+                    <input formControlName="name" type="text" id="name" placeholder="Username"
+                        class="border-t-0 border-s-0 border-e-0 border border-black">
+                    @if (registerForm.get('name')?.touched) {
+                    <div class="text-red-600 my-1 rounded-md">
+                        @if (registerForm.get('name')?.errors?.['required']) {
+                        <p class="py-2 px-1 ">This field is required</p>
+                        }
+                        @else if (registerForm.get('name')?.errors?.['pattern']) {
+                        <p class="py-2 px-1 ">Enter valid name Ex(Ali)</p>
+                        }
+                    </div>
+                    }
+                </div>
+                <div class="flex flex-col mt-3">
+                    <input formControlName="email" type="email" id="email" placeholder="Email address "
+                        class="border-t-0 border-s-0 border-e-0   border border-black">
+                    @if (registerForm.get('email')?.touched) {
+                    <div class="text-red-600 my-1 rounded-md">
+                        @if (registerForm.get('email')?.errors?.['required']) {
+                        <p class="py-2 px-1 ">This field is required</p>
+                        }
+                        @else if (registerForm.get('email')?.errors?.['pattern']) {
+                        <p class="py-2 px-1 ">Enter valid Email</p>
+                        }
+                    </div>
+                    }
+                </div>
+                <div class="flex flex-col mt-3">
+                    <input formControlName="phone" type="tel" id="tel" placeholder="Phone number"
+                        class="border-t-0 border-s-0 border-e-0  border border-black">
+                    @if (registerForm.get('phone')?.touched) {
+                    <div class="text-red-600 my-1 rounded-md">
+                        @if (registerForm.get('phone')?.errors?.['required']) {
+                        <p class="py-2 px-1 ">This field is required</p>
+                        }
+                        @else if (registerForm.get('phone')?.errors?.['pattern']) {
+                        <p class="py-2 px-1 ">Enter valid phone</p>
+                        }
+                    </div>
+                    }
+                </div>
+                <div class="flex flex-col mt-3">
+                    <input formControlName="password" type="password" id="password" placeholder="Password"
+                        class="border-t-0 border-s-0 border-e-0  border border-black">
+                    @if (registerForm.get('password')?.touched) {
+                    <div class="text-red-600 my-1 rounded-md">
+                        @if (registerForm.get('password')?.errors?.['required']) {
+                        <p class="py-2 px-1 ">This field is required</p>
+                        }
+                        @else if (registerForm.get('password')?.errors?.['pattern']) {
+                        <div class="py-2 px-1 ">
+                            <p>At least 8 characters long</p>
+                            <p>Contains at least one lowercase letter</p>
+                            <p>Contains at least one uppercase letter</p>
+                            <p>Contains at least one digit</p>
+                            <p>Contains at least one special character</p>
+                        </div>
+                        }
+                    </div>
+                    }
+                </div>
+                <div class="flex flex-col mt-3">
+                    <input formControlName="rePassword" type="password" id="repassword" placeholder="Confirm password"
+                        class="border-t-0 border-s-0 border-e-0  border border-black">
+                    @if (registerForm.get('rePassword')?.touched) {
+                    <div class="text-red-600 my-1 rounded-md">
+                        @if (registerForm.get('rePassword')?.errors?.['required']) {
+                        <p class="py-2 px-1 ">This field is required</p>
+                        }
+                        @else if (registerForm.errors?.['mismatch']) {
+                        <p class="py-2 px-1 ">password must match rePassword</p>
+                        }
+                    </div>
+                    }
+                </div>
+                <button [disabled]="registerForm.invalid" class="bg-main py-2 px-4 rounded-md mt-3 w-full text-white">
+                    @if (isLoading) {
+                    <span>
+                        <i class="fa-solid fa-spinner fa-spin"></i>
+                    </span>
+                    }
+                    @else {
+                    <span>submit Form</span>
+                    }
+                </button>
+            </form>
+            <div class="flex justify-center items-center gap-1  mt-3">
+                <h3 class="text-xl text-white">Have you account?</h3>
+                <a routerLink="/login" class="text-white text-lg hover:text-green-700 duration-500 font-semibold">Log in</a>
             </div>
         </div>
     </div>
