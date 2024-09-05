@@ -1,4 +1,4 @@
 export enum shared {
   baseUrl = 'https://ecommerce.routemisr.com',
-  server = 'https://e-commerce-dun-omega.vercel.app',
+  server = 'https://e-commerce-weld-seven.vercel.app',
 }
